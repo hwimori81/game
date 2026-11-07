@@ -1,0 +1,1159 @@
+/* ==========================================================================
+   스위치 2 《젤다의 전설: 시간의 오카리나 (2026)》 100% 공략 아카이브 스타일시트
+   디자인 테마: Sacred Forest & Temple of Time (Deep Slate/Forest & Antique Gold)
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Noto+Sans+KR:wght@400;500;600;700&display=swap');
+
+:root {
+  /* Core Surfaces (HSL Curated Dark Stone & Forest Palette) */
+  --bg-base: hsl(215, 28%, 9%);
+  --bg-elevated: hsl(215, 24%, 13%);
+  --bg-card: hsl(215, 22%, 15%);
+  --bg-card-hover: hsl(215, 22%, 18%);
+  --bg-subtle: hsl(215, 20%, 11%);
+  --bg-checked: hsl(156, 28%, 13%);
+
+  /* Borders & Dividers */
+  --border-subtle: hsla(42, 30%, 65%, 0.14);
+  --border-strong: hsla(42, 45%, 65%, 0.32);
+  --border-checked: hsla(152, 55%, 48%, 0.4);
+
+  /* Typography Colors */
+  --text-primary: hsl(42, 33%, 94%);
+  --text-secondary: hsl(215, 16%, 74%);
+  --text-muted: hsl(215, 14%, 56%);
+
+  /* Brand & Semantic Accents */
+  --gold-primary: hsl(43, 74%, 58%);
+  --gold-soft: hsla(43, 74%, 58%, 0.15);
+  --emerald-sage: hsl(152, 58%, 46%);
+  --emerald-soft: hsla(152, 58%, 46%, 0.15);
+  --zora-blue: hsl(204, 78%, 58%);
+  --zora-soft: hsla(204, 78%, 58%, 0.15);
+  --goron-amber: hsl(18, 82%, 58%);
+  --goron-soft: hsla(18, 82%, 58%, 0.15);
+
+  /* Spacing & Radius */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --max-width: 1220px;
+  --transition-fast: 160ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+  line-height: 1.65;
+  letter-spacing: -0.01em;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ==========================================================================
+   Header & Progress Bar
+   ========================================================================== */
+
+.site-header {
+  background-color: var(--bg-elevated);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 1.75rem 1.25rem 1.25rem;
+}
+
+.header-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.header-top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.brand-group {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.triforce-emblem {
+  width: 44px;
+  height: 40px;
+  flex-shrink: 0;
+  margin-top: 0.2rem;
+}
+
+.brand-titles h1 {
+  font-size: clamp(1.35rem, 2.5vw, 1.85rem);
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+
+.brand-subtitle {
+  margin-top: 0.3rem;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.header-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 0.85rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  font-family: inherit;
+  color: var(--text-primary);
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background-color var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.btn:hover {
+  background-color: var(--bg-card-hover);
+  border-color: var(--border-strong);
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn-gold {
+  background-color: var(--gold-soft);
+  border-color: var(--border-strong);
+  color: var(--gold-primary);
+  font-weight: 600;
+}
+
+.btn-gold:hover {
+  background-color: hsla(43, 74%, 58%, 0.24);
+}
+
+.btn-danger:hover {
+  border-color: hsla(0, 75%, 60%, 0.5);
+  color: hsl(0, 80%, 72%);
+}
+
+/* Overall Progress Strip */
+.progress-overview {
+  background-color: var(--bg-subtle);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.progress-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.6rem;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.progress-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.progress-total-pct {
+  font-family: 'Cinzel', serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--gold-primary);
+}
+
+.progress-track {
+  width: 100%;
+  height: 8px;
+  background-color: var(--bg-elevated);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-bottom: 0.85rem;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background-color: var(--gold-primary);
+  transition: width 300ms ease;
+}
+
+.progress-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 0.65rem;
+}
+
+.stat-pill {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.45rem 0.75rem;
+  background-color: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  font-size: 0.82rem;
+}
+
+.stat-pill-label {
+  color: var(--text-secondary);
+}
+
+.stat-pill-value {
+  font-weight: 600;
+  color: var(--text-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ==========================================================================
+   Navigation Tabs & Search / Filter Toolbar
+   ========================================================================== */
+
+.sticky-controls {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background-color: hsla(215, 28%, 9%, 0.94);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 0.85rem 1.25rem;
+}
+
+.controls-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.nav-tabs {
+  display: flex;
+  gap: 0.45rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.nav-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.tab-btn {
+  padding: 0.6rem 1.05rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: inherit;
+  color: var(--text-secondary);
+  background-color: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all var(--transition-fast);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.tab-btn:hover {
+  color: var(--text-primary);
+  background-color: var(--bg-card);
+}
+
+.tab-btn.active {
+  color: var(--bg-base);
+  background-color: var(--gold-primary);
+  border-color: var(--gold-primary);
+}
+
+.tab-count {
+  font-size: 0.76rem;
+  padding: 0.1rem 0.45rem;
+  border-radius: 99px;
+  background-color: hsla(0, 0%, 0%, 0.2);
+  color: inherit;
+}
+
+.filter-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  align-items: center;
+}
+
+.search-box {
+  position: relative;
+  flex: 1 1 260px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 0.55rem 2.2rem 0.55rem 0.9rem;
+  font-size: 0.88rem;
+  font-family: inherit;
+  color: var(--text-primary);
+  background-color: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  outline: none;
+  transition: border-color var(--transition-fast);
+}
+
+.search-input:focus {
+  border-color: var(--gold-primary);
+}
+
+.search-clear-btn {
+  position: absolute;
+  right: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 0.95rem;
+  padding: 0.2rem;
+  display: none;
+}
+
+.search-clear-btn.visible {
+  display: block;
+}
+
+.filter-select {
+  padding: 0.55rem 0.8rem;
+  font-size: 0.85rem;
+  font-family: inherit;
+  color: var(--text-primary);
+  background-color: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  outline: none;
+  cursor: pointer;
+}
+
+.filter-select:focus {
+  border-color: var(--gold-primary);
+}
+
+/* ==========================================================================
+   Main Content Layout & Sections
+   ========================================================================== */
+
+.main-container {
+  max-width: var(--max-width);
+  width: 100%;
+  margin: 0 auto;
+  padding: 1.5rem 1.25rem 4rem;
+  flex: 1;
+}
+
+.tab-panel {
+  display: none;
+}
+
+.tab-panel.active {
+  display: block;
+}
+
+.section-intro {
+  margin-bottom: 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.section-intro h2 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.section-intro p {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+}
+
+/* Sub-navigation pills inside Collectibles tab */
+.subtab-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.subtab-btn {
+  padding: 0.5rem 0.95rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  font-family: inherit;
+  color: var(--text-secondary);
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.subtab-btn.active {
+  color: var(--gold-primary);
+  background-color: var(--gold-soft);
+  border-color: var(--border-strong);
+}
+
+/* Badges */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.18rem 0.55rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  line-height: 1.3;
+}
+
+.badge-child {
+  background-color: var(--emerald-soft);
+  color: var(--emerald-sage);
+}
+
+.badge-adult {
+  background-color: var(--zora-soft);
+  color: var(--zora-blue);
+}
+
+.badge-both {
+  background-color: var(--gold-soft);
+  color: var(--gold-primary);
+}
+
+.badge-sw2 {
+  background-color: var(--goron-soft);
+  color: var(--goron-amber);
+}
+
+/* ==========================================================================
+   Walkthrough Chapter Cards
+   ========================================================================== */
+
+.chapter-jump-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 1.5rem;
+  padding: 0.85rem;
+  background-color: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+}
+
+.chapter-jump-link {
+  font-size: 0.8rem;
+  padding: 0.32rem 0.65rem;
+  border-radius: var(--radius-sm);
+  background-color: var(--bg-card);
+  color: var(--text-secondary);
+  text-decoration: none;
+  border: 1px solid var(--border-subtle);
+  transition: all var(--transition-fast);
+}
+
+.chapter-jump-link:hover {
+  color: var(--gold-primary);
+  border-color: var(--border-strong);
+}
+
+.chapter-Jump-done {
+  background-color: var(--bg-checked);
+  color: var(--emerald-sage);
+  border-color: var(--border-checked);
+}
+
+.chapter-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.chapter-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: border-color var(--transition-fast);
+}
+
+.chapter-card.chapter-completed {
+  border-color: var(--border-checked);
+}
+
+.chapter-header {
+  padding: 1.25rem 1.35rem;
+  background-color: var(--bg-elevated);
+  border-bottom: 1px solid var(--border-subtle);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  cursor: pointer;
+}
+
+.chapter-header-left {
+  flex: 1;
+}
+
+.chapter-meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem;
+  margin-bottom: 0.45rem;
+}
+
+.chapter-region {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.chapter-title {
+  font-size: 1.18rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.2rem;
+}
+
+.chapter-subtitle {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+}
+
+.chapter-header-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.45rem;
+  flex-shrink: 0;
+}
+
+.chapter-progress-badge {
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-sm);
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+}
+
+.chapter-body {
+  padding: 1.35rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+}
+
+.chapter-body.collapsed {
+  display: none;
+}
+
+.chapter-summary {
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+}
+
+.info-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.75rem;
+}
+
+.info-box {
+  background-color: var(--bg-subtle);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem 0.95rem;
+}
+
+.info-box-label {
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--gold-primary);
+  margin-bottom: 0.25rem;
+}
+
+.info-box-content {
+  font-size: 0.86rem;
+  color: var(--text-primary);
+}
+
+.sw2-changes-box {
+  background-color: hsla(18, 60%, 15%, 0.45);
+  border: 1px solid hsla(18, 82%, 58%, 0.35);
+  border-radius: var(--radius-md);
+  padding: 0.95rem 1.1rem;
+}
+
+.sw2-changes-title {
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: var(--goron-amber);
+  margin-bottom: 0.45rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.sw2-changes-list {
+  padding-left: 1.2rem;
+  font-size: 0.86rem;
+  color: var(--text-primary);
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.steps-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.step-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  padding: 0.85rem 1rem;
+  background-color: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: background-color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.step-item:hover {
+  background-color: var(--bg-card-hover);
+}
+
+.step-item.checked {
+  background-color: var(--bg-checked);
+  border-color: var(--border-checked);
+}
+
+.step-checkbox {
+  width: 20px;
+  height: 20px;
+  margin-top: 0.18rem;
+  accent-color: var(--emerald-sage);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.step-content {
+  flex: 1;
+}
+
+.step-title {
+  font-size: 0.94rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.2rem;
+}
+
+.step-item.checked .step-title {
+  text-decoration: line-through;
+  color: var(--text-secondary);
+}
+
+.step-detail {
+  font-size: 0.86rem;
+  color: var(--text-secondary);
+}
+
+.boss-box {
+  background-color: var(--bg-subtle);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  padding: 1.05rem 1.15rem;
+}
+
+.boss-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.65rem;
+}
+
+.boss-name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--gold-primary);
+}
+
+.boss-weakness {
+  font-size: 0.8rem;
+  padding: 0.2rem 0.6rem;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+}
+
+.boss-strategy-list {
+  padding-left: 1.2rem;
+  font-size: 0.86rem;
+  color: var(--text-secondary);
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  margin-bottom: 0.65rem;
+}
+
+.boss-hall-tip {
+  font-size: 0.82rem;
+  padding: 0.55rem 0.8rem;
+  background-color: var(--bg-elevated);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+}
+
+/* ==========================================================================
+   Collectibles Cards Grid (Skulltulas, Heart Pieces, Side Quests)
+   ========================================================================== */
+
+.collectibles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+  gap: 0.85rem;
+}
+
+.collectible-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+  padding: 0.95rem 1.05rem;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: background-color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.collectible-card:hover {
+  background-color: var(--bg-card-hover);
+  border-color: var(--border-strong);
+}
+
+.collectible-card.checked {
+  background-color: var(--bg-checked);
+  border-color: var(--border-checked);
+}
+
+.collectible-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.collectible-top-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.35rem;
+}
+
+.collectible-number {
+  font-family: 'Cinzel', serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--gold-primary);
+}
+
+.collectible-region {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.collectible-title {
+  font-size: 0.94rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+}
+
+.collectible-card.checked .collectible-title {
+  text-decoration: line-through;
+  color: var(--text-secondary);
+}
+
+.collectible-req {
+  font-size: 0.78rem;
+  color: var(--gold-primary);
+  margin-bottom: 0.3rem;
+}
+
+.collectible-desc {
+  font-size: 0.84rem;
+  color: var(--text-secondary);
+}
+
+/* Skulltula Rewards Reference Table */
+.rewards-banner {
+  background-color: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 1rem 1.15rem;
+  margin-bottom: 1.25rem;
+}
+
+.rewards-banner h3 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--gold-primary);
+  margin-bottom: 0.65rem;
+}
+
+.rewards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.55rem;
+}
+
+.reward-tier {
+  padding: 0.55rem 0.75rem;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  font-size: 0.82rem;
+}
+
+.reward-tier.unlocked {
+  background-color: var(--bg-checked);
+  border-color: var(--border-checked);
+}
+
+.reward-tier-tokens {
+  font-weight: 700;
+  color: var(--gold-primary);
+}
+
+/* ==========================================================================
+   Ocarina Interactive Synthesizer & Song Cards
+   ========================================================================== */
+
+.ocarina-studio {
+  background-color: var(--bg-elevated);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-lg);
+  padding: 1.35rem;
+  margin-bottom: 1.5rem;
+}
+
+.studio-top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.studio-title {
+  font-size: 1.08rem;
+  font-weight: 700;
+  color: var(--gold-primary);
+}
+
+.studio-subtitle {
+  font-size: 0.84rem;
+  color: var(--text-secondary);
+}
+
+.ocarina-staff {
+  min-height: 62px;
+  background-color: var(--bg-subtle);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.played-notes-row {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+  min-height: 36px;
+}
+
+.note-token {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  font-size: 0.88rem;
+  font-weight: 700;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-strong);
+  color: var(--text-primary);
+  transition: transform 150ms ease, background-color 150ms ease;
+}
+
+.note-token.note-A {
+  background-color: hsla(204, 78%, 58%, 0.22);
+  border-color: var(--zora-blue);
+  color: var(--zora-blue);
+}
+
+.note-token.note-C {
+  background-color: hsla(43, 74%, 58%, 0.2);
+  border-color: var(--gold-primary);
+  color: var(--gold-primary);
+}
+
+.note-token.active-playing {
+  transform: scale(1.22);
+  background-color: var(--gold-primary);
+  color: var(--bg-base);
+}
+
+.recognized-song-banner {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--emerald-sage);
+}
+
+.ocarina-keypad {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  justify-content: center;
+}
+
+.ocarina-key-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 112px;
+  padding: 0.7rem 0.9rem;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  cursor: pointer;
+  font-family: inherit;
+  transition: transform 100ms ease, background-color var(--transition-fast);
+}
+
+.ocarina-key-btn:hover {
+  background-color: var(--bg-card-hover);
+}
+
+.ocarina-key-btn:active,
+.ocarina-key-btn.pressed {
+  transform: scale(0.95);
+  background-color: var(--gold-soft);
+}
+
+.key-symbol {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 0.15rem;
+}
+
+.key-pitch {
+  font-size: 0.76rem;
+  color: var(--text-secondary);
+}
+
+.songs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 1rem;
+}
+
+.song-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.song-card.checked {
+  background-color: var(--bg-checked);
+  border-color: var(--border-checked);
+}
+
+.song-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.song-name {
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.song-en {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.song-notes-strip {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.6rem 0.75rem;
+  background-color: var(--bg-subtle);
+  border-radius: var(--radius-sm);
+  flex-wrap: wrap;
+}
+
+.song-meta {
+  font-size: 0.83rem;
+  color: var(--text-secondary);
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.song-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+  padding-top: 0.4rem;
+}
+
+/* ==========================================================================
+   Switch 2 Remake Guide Tab
+   ========================================================================== */
+
+.remake-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1rem;
+}
+
+.remake-feature-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 1.2rem;
+}
+
+.remake-feature-card h3 {
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: var(--gold-primary);
+  margin-bottom: 0.5rem;
+}
+
+.remake-feature-card p,
+.remake-feature-card li {
+  font-size: 0.86rem;
+  color: var(--text-secondary);
+}
+
+.remake-feature-card ul {
+  padding-left: 1.15rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-top: 0.45rem;
+}
+
+/* Empty State */
+.empty-state {
+  text-align: center;
+  padding: 3rem 1.5rem;
+  background-color: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
+}
+
+/* Footer */
+.site-footer {
+  border-top: 1px solid var(--border-subtle);
+  background-color: var(--bg-elevated);
+  padding: 1.5rem 1.25rem;
+  text-align: center;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+@media (max-width: 768px) {
+  .header-top {
+    flex-direction: column;
+  }
+  .chapter-header {
+    flex-direction: column;
+  }
+  .chapter-header-right {
+    align-items: flex-start;
+    flex-direction: row;
+  }
+  .collectibles-grid,
+  .songs-grid {
+    grid-template-columns: 1fr;
+  }
+}

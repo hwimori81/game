@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>스위치 2 젤다의 전설: 시간의 오카리나 (2026) 100% 공략 & 수집 체크리스트</title>
+  <meta name="description" content="닌텐도 스위치 2 풀 리메이크 '젤다의 전설: 시간의 오카리나 (2026)' 완벽 공략집. 소년기·청년기 전 던전 및 보스 공략, 황금 스탈튤라 100마리, 하트 조각 36개, 빈 병, 가면 거래, 빅고론도 체크리스트와 인터랙티브 오카리나 연주 위젯을 제공합니다." />
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+<body>
+  <!-- 상단 헤더 & 100% 진행도 트래커 -->
+  <header class="site-header" id="site-header">
+    <div class="header-inner">
+      <div class="header-top">
+        <div class="brand-group">
+          <svg class="triforce-emblem" viewBox="0 0 100 88" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <polygon points="50,2 74,44 26,44" fill="#E3B341" stroke="#F8E3A1" stroke-width="2" />
+            <polygon points="26,44 50,86 2,86" fill="#E3B341" stroke="#F8E3A1" stroke-width="2" />
+            <polygon points="74,44 98,86 50,86" fill="#E3B341" stroke="#F8E3A1" stroke-width="2" />
+          </svg>
+          <div class="brand-titles">
+            <h1>스위치 2 젤다의 전설: 시간의 오카리나 100% 공략 아카이브</h1>
+            <p class="brand-subtitle">Nintendo Switch 2 풀 리메이크 (2026.11.05 출시판) 기준 · 전 던전 스토리 루트 · 수집품 로컬 자동 저장</p>
+          </div>
+        </div>
+        <div class="header-actions">
+          <button type="button" class="btn" id="btn-export-progress" title="현재 체크한 진행도를 JSON 파일로 백업합니다">
+            💾 진행도 백업
+          </button>
+          <button type="button" class="btn" id="btn-import-progress" title="백업한 JSON 진행도 파일을 불러옵니다">
+            📂 불러오기
+          </button>
+          <input type="file" id="input-import-file" accept=".json,application/json" style="display: none;" />
+          <button type="button" class="btn btn-danger" id="btn-reset-progress" title="모든 체크 상태를 초기화합니다">
+            ↺ 초기화
+          </button>
+        </div>
+      </div>
+
+      <!-- 100% 올클리어 진행률 게이지 -->
+      <section class="progress-overview" aria-label="100% 달성 진행도 요약">
+        <div class="progress-header-row">
+          <div class="progress-title">
+            <span>⏳ 시간의 실타래 (Threads of Time) 100% 올클리어 달성률</span>
+          </div>
+          <div class="progress-total-pct" id="overall-progress-pct">0.0%</div>
+        </div>
+        <div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+          <div class="progress-fill" id="overall-progress-fill"></div>
+        </div>
+        <div class="progress-stats-grid">
+          <div class="stat-pill">
+            <span class="stat-pill-label">⚔️ 메인 스토리 단계</span>
+            <span class="stat-pill-value" id="stat-steps">0 / 64</span>
+          </div>
+          <div class="stat-pill">
+            <span class="stat-pill-label">🕷️ 황금 스탈튤라</span>
+            <span class="stat-pill-value" id="stat-skulltulas">0 / 100</span>
+          </div>
+          <div class="stat-pill">
+            <span class="stat-pill-label">❤️ 하트 조각</span>
+            <span class="stat-pill-value" id="stat-hearts">0 / 36</span>
+          </div>
+          <div class="stat-pill">
+            <span class="stat-pill-label">🎵 오카리나 악보</span>
+            <span class="stat-pill-value" id="stat-songs">0 / 12</span>
+          </div>
+          <div class="stat-pill">
+            <span class="stat-pill-label">🏆 핵심 서브 & 장비</span>
+            <span class="stat-pill-value" id="stat-sidequests">0 / 21</span>
+          </div>
+        </div>
+      </section>
+    </div>
+  </header>
+
+  <!-- 스티키 탭 네비게이션 및 통합 검색/필터 바 -->
+  <nav class="sticky-controls" aria-label="공략 카테고리 및 검색 필터">
+    <div class="controls-inner">
+      <div class="nav-tabs" role="tablist">
+        <button type="button" class="tab-btn active" data-tab="walkthrough" id="tab-btn-walkthrough" role="tab">
+          <span>🗡️ 메인 스토리 & 던전 공략</span>
+          <span class="tab-count" id="tab-count-walkthrough">0/64</span>
+        </button>
+        <button type="button" class="tab-btn" data-tab="collectibles" id="tab-btn-collectibles" role="tab">
+          <span>🕷️ 100% 수집품 체크리스트</span>
+          <span class="tab-count" id="tab-count-collectibles">0/157</span>
+        </button>
+        <button type="button" class="tab-btn" data-tab="songs" id="tab-btn-songs" role="tab">
+          <span>🎵 오카리나 악보 & 연주 위젯</span>
+          <span class="tab-count" id="tab-count-songs">0/12</span>
+        </button>
+        <button type="button" class="tab-btn" data-tab="remake" id="tab-btn-remake" role="tab">
+          <span>✨ 스위치 2 리메이크 변경점 총정리</span>
+        </button>
+      </div>
+
+      <div class="filter-toolbar" id="main-filter-toolbar">
+        <div class="search-box">
+          <input
+            type="search"
+            id="global-search-input"
+            class="search-input"
+            placeholder="던전, 보스, 아이템, 지역명, 스탈튤라 번호(#007) 검색... (Ctrl+K)"
+            aria-label="통합 키워드 검색"
+          />
+          <button type="button" class="search-clear-btn" id="search-clear-btn" title="검색어 지우기">✕</button>
+        </div>
+
+        <select id="era-filter-select" class="filter-select" aria-label="시대 필터">
+          <option value="all">모든 시대 (소년기 + 청년기)</option>
+          <option value="child">🌱 소년기 (Child Link)</option>
+          <option value="adult">⚔️ 청년기 (Adult Link)</option>
+        </select>
+
+        <select id="region-filter-select" class="filter-select" aria-label="지역 및 분류 필터">
+          <option value="all">모든 지역 / 분류</option>
+        </select>
+
+        <select id="status-filter-select" class="filter-select" aria-label="획득 상태 필터">
+          <option value="all">전체 보기 (완료 + 미완료)</option>
+          <option value="unchecked">🔍 미획득 / 미완료 항목만</option>
+          <option value="checked">✅ 획득 / 완료된 항목만</option>
+        </select>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 메인 콘텐츠 컨테이너 -->
+  <main class="main-container">
+    <!-- 패널 1: 메인 스토리 & 던전 공략 -->
+    <section class="tab-panel active" data-panel="walkthrough" id="panel-walkthrough">
+      <div class="section-intro">
+        <div>
+          <h2>메인 스토리 & 전 던전/보스 진행 공략 (제1장 ~ 제14장)</h2>
+          <p>각 단계 카드를 클릭하면 진행 완료로 체크되며, 스위치 2 리메이크(2026)에서 달라진 퍼즐·동선 팁과 보스 리매치 공략을 함께 확인할 수 있습니다.</p>
+        </div>
+      </div>
+
+      <!-- 챕터 빠른 이동 점프 바 -->
+      <div class="chapter-jump-bar" id="chapter-jump-bar" aria-label="챕터 빠른 이동"></div>
+
+      <!-- 챕터 카드 리스트 -->
+      <div class="chapter-list" id="walkthrough-chapter-list"></div>
+    </section>
+
+    <!-- 패널 2: 100% 수집 요소 체크리스트 -->
+    <section class="tab-panel" data-panel="collectibles" id="panel-collectibles">
+      <div class="section-intro">
+        <div>
+          <h2>100% 수집 요소 체크리스트</h2>
+          <p>황금 스탈튤라 100마리, 하트 조각 36개, 빈 병 4개, 행복의 가면 거래, 빅고론도(대장군검), 대요정의 샘 6곳을 빠짐없이 관리하세요.</p>
+        </div>
+      </div>
+
+      <div class="subtab-bar" role="tablist" aria-label="수집 요소 세부 분류">
+        <button type="button" class="subtab-btn active" data-collectible-subtab="skulltulas" id="subtab-btn-skulltulas">
+          🕷️ 황금 스탈튤라 100마리 (<span id="subtab-count-skulltulas">0/100</span>)
+        </button>
+        <button type="button" class="subtab-btn" data-collectible-subtab="hearts" id="subtab-btn-hearts">
+          ❤️ 하트 조각 36개 (<span id="subtab-count-hearts">0/36</span>)
+        </button>
+        <button type="button" class="subtab-btn" data-collectible-subtab="sidequests" id="subtab-btn-sidequests">
+          🏆 빈 병 · 가면 · 빅고론도 · 대요정 (<span id="subtab-count-sidequests">0/21</span>)
+        </button>
+      </div>
+
+      <!-- 황금 스탈튤라 보상 테이블 영역 -->
+      <div id="skulltula-rewards-area"></div>
+
+      <!-- 수집품 카드 그리드 -->
+      <div id="collectibles-content-area"></div>
+    </section>
+
+    <!-- 패널 3: 오카리나 악보 & 연주 위젯 -->
+    <section class="tab-panel" data-panel="songs" id="panel-songs">
+      <div class="section-intro">
+        <div>
+          <h2>오카리나 악보 모음 & 인터랙티브 연주 스튜디오</h2>
+          <p>스위치 2 버튼 표기(A, ⬆️, ⬇️, ⬅️, ➡️)와 실제 오카리나 5음계(D Dorian) 신디사이저로 12곡의 멜로디를 직접 들어보고 연주해 보세요.</p>
+        </div>
+      </div>
+
+      <!-- 인터랙티브 오카리나 연주 패드 -->
+      <div class="ocarina-studio" id="ocarina-interactive-studio">
+        <div class="studio-top">
+          <div>
+            <div class="studio-title">🪈 스위치 2 오카리나 실시간 연주 패드</div>
+            <div class="studio-subtitle">아래 버튼을 클릭하거나 키보드(방향키 ⬆️⬇️⬅️➡️ 및 A / Space)를 눌러 연주하면 일치하는 악보를 자동 인식합니다.</div>
+          </div>
+          <button type="button" class="btn" id="ocarina-clear-btn">음표 지우기</button>
+        </div>
+
+        <div class="ocarina-staff">
+          <div class="played-notes-row" id="ocarina-played-notes"></div>
+          <div class="recognized-song-banner" id="ocarina-recognized-banner">
+            오카리나 버튼(A, ⬆️, ⬇️, ⬅️, ➡️)을 눌러 연주해 보세요.
+          </div>
+        </div>
+
+        <div class="ocarina-keypad">
+          <button type="button" class="ocarina-key-btn" data-ocarina-key="A" id="pad-key-A">
+            <span class="key-symbol" style="color: var(--zora-blue);">A</span>
+            <span class="key-pitch">레 (D4) · Space/A</span>
+          </button>
+          <button type="button" class="ocarina-key-btn" data-ocarina-key="DOWN" id="pad-key-DOWN">
+            <span class="key-symbol" style="color: var(--gold-primary);">⬇️</span>
+            <span class="key-pitch">파 (F4) · C-Down</span>
+          </button>
+          <button type="button" class="ocarina-key-btn" data-ocarina-key="RIGHT" id="pad-key-RIGHT">
+            <span class="key-symbol" style="color: var(--gold-primary);">➡️</span>
+            <span class="key-pitch">라 (A4) · C-Right</span>
+          </button>
+          <button type="button" class="ocarina-key-btn" data-ocarina-key="LEFT" id="pad-key-LEFT">
+            <span class="key-symbol" style="color: var(--gold-primary);">⬅️</span>
+            <span class="key-pitch">시 (B4) · C-Left</span>
+          </button>
+          <button type="button" class="ocarina-key-btn" data-ocarina-key="UP" id="pad-key-UP">
+            <span class="key-symbol" style="color: var(--gold-primary);">⬆️</span>
+            <span class="key-pitch">높은 레 (D5) · C-Up</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- 정규 12곡 카드 그리드 -->
+      <div class="songs-grid" id="songs-cards-grid"></div>
+
+      <!-- 특수 악보 (허수아비의 노래 & 개구리 합창단) -->
+      <div class="section-intro" style="margin-top: 2.25rem;">
+        <div>
+          <h2>특수 멜로디 가이드 (허수아비의 노래 & 개구리 합창단)</h2>
+          <p>인벤토리 악보 칸에는 표시되지 않지만 100% 수집(하트 조각 및 황금 스탈튤라)에 반드시 필요한 특수 연주입니다.</p>
+        </div>
+      </div>
+      <div class="remake-grid" id="bonus-songs-grid"></div>
+    </section>
+
+    <!-- 패널 4: 스위치 2 리메이크(2026) 핵심 변경점 & 시스템 총정리 -->
+    <section class="tab-panel" data-panel="remake" id="panel-remake">
+      <div class="section-intro">
+        <div>
+          <h2>닌텐도 스위치 2 리메이크 (2026) 핵심 변경점 총정리</h2>
+          <p>1998년(N64) 및 2011년(3DS) 원작을 플레이했던 복귀 유저와 신규 입문자 모두가 알아두어야 할 2026년 리메이크만의 차이점입니다.</p>
+        </div>
+      </div>
+
+      <div class="remake-grid">
+        <article class="remake-feature-card">
+          <h3>🎮 1. 현대화된 액션 & 카메라 조작</h3>
+          <ul>
+            <li><strong>수동 점프 버튼 추가:</strong> 절벽 끝에서만 자동 점프하던 원작과 달리, 언제든 버튼을 눌러 직접 점프할 수 있어 던전 지형 돌파가 훨씬 자유로워졌습니다.</li>
+            <li><strong>질주(달리기) 및 빠른 수영:</strong> 끝없이 앞구르기를 연타할 필요 없이 달리기 기능이 추가되었으며, 수중 수영 속도가 대폭 향상되었습니다.</li>
+            <li><strong>3인칭 숄더뷰 & 자이로 조준:</strong> 활·훅샷·부메랑·새총 조준 시 시야가 가리지 않는 3인칭 어깨 너머 시점과 스위치 2 자이로 정밀 조준을 지원합니다.</li>
+            <li><strong>퀵슬롯 아이템 스크롤:</strong> 《야생의 숨결》 스타일의 퀵 스크롤 바로 헤비 부츠·호버 부츠·진실의 렌즈·오카리나를 메뉴 진입 없이 즉시 전환합니다.</li>
+          </ul>
+        </article>
+
+        <article class="remake-feature-card">
+          <h3>🌊 2. 던전 리디자인 & 조라의 마을 해빙</h3>
+          <ul>
+            <li><strong>물의 신전 대폭 개편:</strong> 28년간 악명 높았던 물의 신전 일부 복잡한 방이 통합되고, 중앙 탑 지하 등 놓치기 쉬웠던 작은 열쇠 상자와 수위 조절 동선이 명확해졌습니다.</li>
+            <li><strong>조라의 마을 해빙 스토리 추가:</strong> 원작에서는 엔딩 전까지 얼어붙어 있던 청년기 조라의 마을이, <strong>물의 신전 클리어 즉시 얼음이 녹아내리며</strong> 조라족 주민들과 대화하고 조라 상점을 이용할 수 있습니다!</li>
+            <li><strong>데크나무님 속 & 숲의 신전 개선:</strong> 데크나무님 속 B1 황금 스탈튤라를 폭탄/부메랑 없이 첫 방문에 바로 입수할 수 있으며, 숲의 신전은 고풍스러운 목재 저택과 포우 자매별 컬러 조명으로 리모델링되었습니다.</li>
+          </ul>
+        </article>
+
+        <article class="remake-feature-card">
+          <h3>🧰 3. 신규 아이템 & 장비 사양 변화</h3>
+          <ul>
+            <li><strong>메아리 돌 (Echo Gem):</strong> 스탈튤라 20마리 보상으로 입수하며, 현재 지역에 미획득 황금 스탈튤라가 남아 있으면 공명음과 HD 진동2로 알려줍니다.</li>
+            <li><strong>장사꾼 데크 씨앗 (Business Scrub Seed):</strong> 필드 어디서나 상점 데크 스크럽을 소환해 소모품을 보충할 수 있습니다.</li>
+            <li><strong>안경형 진실의 렌즈:</strong> 손에 드는 돋보기 대신 링크가 얼굴에 직접 착용하는 안경 형태로 바뀌었으며, 시커 문양 물결 효과와 함께 시야 범위가 훨씬 넓어졌습니다.</li>
+            <li><strong>청년 링크 가면 착용 & 독심술:</strong> 청년기에도 가면을 쓸 수 있으며, <strong>진실의 가면</strong>을 쓰고 NPC에게 다가가면 시대별로 달라진 속마음을 읽을 수 있습니다!</li>
+          </ul>
+        </article>
+
+        <article class="remake-feature-card">
+          <h3>💎 4. 루피 경제 & 대요정의 샘 기부</h3>
+          <ul>
+            <li><strong>초기 200루피 지갑:</strong> 게임 시작부터 코키리의 지갑이 200루피를 담을 수 있어 초반 방패 구매와 미니게임 도전이 편리합니다.</li>
+            <li><strong>대요정의 샘 루피 기부:</strong> 마법(딘의 불꽃, 필로네의 바람, 정령의 사랑)과 능력치 업그레이드를 주는 대요정들이 《야생의 숨결》처럼 최초 1회 루피 기부를 요구합니다. 스탈튤라 토큰을 모아 지갑을 미리 확장해 두세요.</li>
+            <li><strong>요정 회복량 조정:</strong> 빈 병에 담은 요정의 부활/회복량이 하트 5개로 조정되어 물약과 우유의 전략적 가치가 높아졌습니다.</li>
+          </ul>
+        </article>
+
+        <article class="remake-feature-card">
+          <h3>🛏️ 5. 침대 휴식 & 패배한 적의 전당 (보스 러시)</h3>
+          <ul>
+            <li><strong>침대 수면 시스템:</strong> 링크의 집, 론론 목장, 고론 시티 등 마을 곳곳의 침대에서 잠을 자 체력·마력을 회복하거나 낮/밤 시간을 넘길 수 있습니다.</li>
+            <li><strong>패배한 적의 전당 (Hall of Fallen Foes):</strong> 침대에 나타나는 푸른 포털을 통해 입장하며, 물리친 몬스터와 보스의 조각상 도감을 감상하고 <strong>보스 타임어택 리매치</strong> 및 스토리 진행에 따라 해금되는 <strong>3단계 보스 런 챌린지</strong>에 도전할 수 있습니다.</li>
+          </ul>
+        </article>
+
+        <article class="remake-feature-card">
+          <h3>📱 6. 마이크 연주 · 젤다 노트 앱 · 아미보 연동</h3>
+          <ul>
+            <li><strong>스위치 2 본체 마이크 오카리나 연주:</strong> 버튼 입력뿐만 아니라 스위치 2 내장 마이크에 허밍을 하거나 공식 실물 오카리나 주변기기를 불어 실제 음정으로 오카리나 곡을 발동시킬 수 있습니다.</li>
+            <li><strong>시간의 실타래 & 젤다 노트(Zelda Notes):</strong> 인게임 '시간의 실타래' 로그로 메인·서브 퀘스트를 추적하고, 스마트폰 Nintendo Switch 앱의 '젤다 노트'와 연동해 실시간 지도·사진 위치 찾기·오카리나 연주를 즐길 수 있습니다.</li>
+            <li><strong>아미보(amiibo) 지원:</strong> 젤다의 전설 시리즈 아미보를 태그해 매일 보급품을 받을 수 있으며, 소년 링크/소년 젤다 신규 아미보 태그 시 레트로 폴리곤 스타일의 특별 가면이 해금됩니다.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>스위치 2 《젤다의 전설: 시간의 오카리나 (2026)》 100% 인터랙티브 공략 아카이브 · 모든 체크리스트 데이터는 브라우저에 자동 저장됩니다.</p>
+  </footer>
+
+  <script type="module" src="./js/app.js"></script>
+</body>
+</html>
